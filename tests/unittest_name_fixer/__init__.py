@@ -1,9 +1,9 @@
 from importlib.resources import files
 
 import pytest
+from unittest_name_fixer import all_method_names_match_test_names
 
-import tests.data
-from src.tcunit_precommit.unittest_name_check import all_method_names_match_test_names
+import tests.unittest_name_fixer.data
 
 
 @pytest.fixture()

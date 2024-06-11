@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 
 
-def all_method_names_match_test_names(xml_content):
+def all_method_names_match_test_names(xml_content, verbose: bool):
     root = ET.fromstring(xml_content)
     methods = root.findall(".//Method")
 
@@ -17,9 +17,10 @@ def all_method_names_match_test_names(xml_content):
                 test_name = implementation[test_start + 6 : test_end]
 
                 if test_name != method_name:
-                    print(
-                        f"Method '{method_name}' does NOT match the TEST name '{test_name}'."
-                    )
+                    if verbose:
+                        print(
+                            f"Method '{method_name}' does NOT match the TEST name '{test_name}'."
+                        )
                     all_names_match = False
 
     return all_names_match

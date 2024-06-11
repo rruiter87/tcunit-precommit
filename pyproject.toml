@@ -23,4 +23,4 @@ dev = [
 ]
 
 [project.scripts]
-tcunit-precommit = "tcunit_precommit.cli:main"
+unittest_name_fixer = "unittest_name_fixer.cli:main"
