@@ -1,9 +1,9 @@
 from importlib.resources import files
 
 import pytest
-from unittest_name_fixer import all_method_names_match_test_names
+from unittest_name_fixer import all_method_names_match_test_names, fix_test_names
 
-import tests.unittest_name_fixer.data
+import tests.data
 
 
 @pytest.fixture()
@@ -43,16 +43,21 @@ def one_missing_test():
 
 
 def test_file_with_non_matching_names(one_failing_one_ok_name):
-    assert not all_method_names_match_test_names(one_failing_one_ok_name)
+    assert not all_method_names_match_test_names(one_failing_one_ok_name, verbose=False)
 
 
 def test_file_with_only_matching_names(all_matching_names):
-    assert all_method_names_match_test_names(all_matching_names)
+    assert all_method_names_match_test_names(all_matching_names, verbose=False)
 
 
 def test_file_with_two_mismatching_names(two_non_matching_names):
-    assert not all_method_names_match_test_names(two_non_matching_names)
+    assert not all_method_names_match_test_names(two_non_matching_names, verbose=False)
 
 
 def test_missing_test_at_start(one_missing_test):
-    assert all_method_names_match_test_names(one_missing_test)
+    assert all_method_names_match_test_names(one_missing_test, verbose=False)
+
+
+def test_fixing_non_matching_names(two_non_matching_names):
+    fixed_content = fix_test_names(two_non_matching_names)
+    assert all_method_names_match_test_names(fixed_content, verbose=False)
