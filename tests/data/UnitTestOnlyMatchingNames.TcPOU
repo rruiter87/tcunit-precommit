@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="UnitTestWithOneMatchingAndOneNonMatchingName" Id="{66a0debc-b9cd-4b27-a180-e0a3969004d0}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK UnitTestWithOneMatchingAndOneNonMatchingName EXTENDS FB_TestSuite
+  <POU Name="UnitTestOnlyMatchingNames" Id="{bfb9981c-9c74-4219-8ca5-1996ef8ad405}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK UnitTestOnlyMatchingNames EXTENDS FB_TestSuite
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="HasMatchingName" Id="{e8f9cfce-1f1c-44f4-93fb-68e8399c5ca1}">
+    <Method Name="HasMatchingName" Id="{1e1b8b4b-4792-4ed6-8da9-fd826de17784}">
       <Declaration><![CDATA[METHOD HasMatchingName
 ]]></Declaration>
       <Implementation>
@@ -18,13 +18,13 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="NameDoesntMatch" Id="{bb46751f-6e32-418e-b8a1-e16c822e22b2}">
-      <Declaration><![CDATA[METHOD NameDoesntMatch
+    <Method Name="NameAlsoMatches" Id="{21882d82-3823-4341-a489-b0fbf5d5c4eb}">
+      <Declaration><![CDATA[METHOD NameAlsoMatches
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[TEST('TheNameCertainlyDoesntMatch');
+        <ST><![CDATA[TEST('NameAlsoMatches');
 
 AssertTrue(Condition:=TRUE, Message:='Blabla');
 
