@@ -8,7 +8,11 @@ def main():
     parser = argparse.ArgumentParser(
         description="Check if method names match test names in XML files."
     )
-    parser.add_argument("--verbose", action="store_true", help="Enable verbose output")
+    parser.add_argument(
+        "--quiet",
+        action="store_true",
+        help="Do not print which files has non-matching test-method names.",
+    )
     parser.add_argument("filenames", nargs="+", help="XML files to check")
 
     args = parser.parse_args()
@@ -19,7 +23,7 @@ def main():
         try:
             with open(filename, "r", encoding="utf-8") as file:
                 xml_content = file.read()
-                if not all_method_names_match_test_names(xml_content, args.verbose):
+                if not all_method_names_match_test_names(xml_content, not args.quiet):
                     all_files_match = False
         except Exception as e:
             print(f"Error reading file {filename}: {e}", file=sys.stderr)
