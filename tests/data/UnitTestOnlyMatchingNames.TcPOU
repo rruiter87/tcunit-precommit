@@ -4,7 +4,9 @@
     <Declaration><![CDATA[FUNCTION_BLOCK UnitTestOnlyMatchingNames EXTENDS FB_TestSuite
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[HasMatchingName();
+NameAlsoMatches();
+]]></ST>
     </Implementation>
     <Method Name="HasMatchingName" Id="{1e1b8b4b-4792-4ed6-8da9-fd826de17784}">
       <Declaration><![CDATA[METHOD HasMatchingName

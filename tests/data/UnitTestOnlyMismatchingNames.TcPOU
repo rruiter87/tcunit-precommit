@@ -4,7 +4,8 @@
     <Declaration><![CDATA[FUNCTION_BLOCK UnitTestOnlyMismatchingNames EXTENDS FB_TestSuite
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[NameAlsoDoesntMatches();
+NameDoesntMatch();]]></ST>
     </Implementation>
     <Method Name="NameAlsoDoesntMatches" Id="{6f280925-8f50-4f32-8fe1-54a2ccce582d}">
       <Declaration><![CDATA[METHOD NameAlsoDoesntMatches
