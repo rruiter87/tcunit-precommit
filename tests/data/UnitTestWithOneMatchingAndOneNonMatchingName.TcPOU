@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="PrecommitUnitTest" Id="{66a0debc-b9cd-4b27-a180-e0a3969004d0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PrecommitUnitTest EXTENDS FB_TestSuite
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="HasMatchingName" Id="{e8f9cfce-1f1c-44f4-93fb-68e8399c5ca1}">
+      <Declaration><![CDATA[METHOD HasMatchingName
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('HasMatchingName');
+
+AssertTrue(Condition:=TRUE, Message:='Blabla');
+
+TEST_FINISHED();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="NameDoesntMatch" Id="{bb46751f-6e32-418e-b8a1-e16c822e22b2}">
+      <Declaration><![CDATA[METHOD NameDoesntMatch
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TheNameCertainlyDoesntMatch');
+
+AssertTrue(Condition:=TRUE, Message:='Blabla');
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
