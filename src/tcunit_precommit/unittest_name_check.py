@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 
 
-def check_unit_test_method_names(xml_content):
+def all_method_names_match_test_names(xml_content):
     root = ET.fromstring(xml_content)
     methods = root.findall(".//Method")
 

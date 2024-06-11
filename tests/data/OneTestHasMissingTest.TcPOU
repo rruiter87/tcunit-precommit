@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="OneTestHasMissingTest" Id="{bf8d71b6-a27f-4ba4-bb08-a3fc34e4409d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK OneTestHasMissingTest EXTENDS FB_TestSuite
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[NameMatches();
+MissingTestAtTheStart();]]></ST>
+    </Implementation>
+    <Method Name="MissingTestAtTheStart" Id="{5e89dcb4-9304-45a7-8b6c-f944a99ca271}">
+      <Declaration><![CDATA[METHOD MissingTestAtTheStart
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AssertTrue(Condition:=TRUE, Message:='Blabla');
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="NameMatches" Id="{1989bb87-271a-43c8-8920-4c9d0ddcf1e0}">
+      <Declaration><![CDATA[METHOD NameMatches
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('NameMatches');
+
+AssertTrue(Condition:=TRUE, Message:='Blabla');
+
+TEST_FINISHED();
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
