@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="UnitTestOnlyMismatchingNames" Id="{b1c4a00b-5c5c-4336-a349-8d6258c04f41}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK UnitTestOnlyMismatchingNames EXTENDS FB_TestSuite
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="NameAlsoDoesntMatches" Id="{6f280925-8f50-4f32-8fe1-54a2ccce582d}">
+      <Declaration><![CDATA[METHOD NameAlsoDoesntMatches
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('This also doesnt match');
+
+AssertTrue(Condition:=TRUE, Message:='Blabla');
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="NameDoesntMatch" Id="{c8bbb18e-2be6-4ff6-903b-8e71167a7a90}">
+      <Declaration><![CDATA[METHOD NameDoesntMatch
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('This is completely different');
+
+AssertTrue(Condition:=TRUE, Message:='Blabla');
+
+TEST_FINISHED();
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
