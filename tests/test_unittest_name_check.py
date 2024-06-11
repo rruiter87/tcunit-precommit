@@ -11,7 +11,7 @@ def one_failing_one_ok_name():
     return (
         files(tests.data)
         .joinpath("UnitTestWithOneMatchingAndOneNonMatchingName.TcPOU")
-        .read_text()
+        .read_text(encoding="UTF-8")
     )
 
 
