@@ -1,2 +1,3 @@
-# tcunit-precommit
-Pre-commit hooks for TcUnit library
+# TcUnit pre-commit
+
+Pre-commit hooks for [TcUnit](https://tcunit.org/) library.
