@@ -17,4 +17,4 @@ dev = [
 ]
 
 [project.scripts]
-unittest_name_fixer = "unittest_name_fixer.cli:main"
+unittest-name-fixer = "unittest_name_fixer.cli:main"

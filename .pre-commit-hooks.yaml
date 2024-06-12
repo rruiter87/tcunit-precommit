@@ -1,0 +1,6 @@
+- id: unittest-name-fixer
+  name: TcUnit test name fixer
+  description: Find and optionally fix mismatch between test and method names.
+  entry: unittest-name-fixer
+  language: python
+  files: .*\.TcPOU$
