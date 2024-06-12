@@ -6,17 +6,17 @@ from unittest_name_fixer.utils import all_method_names_match_test_names, fix_tes
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Check if method names match test names in XML files."
+        description="Check if TwinCAT method names match TcUnit test names."
     )
     parser.add_argument(
         "--quiet",
         action="store_true",
-        help="Do not print which files has non-matching test-method names.",
+        help="Do not print non-matching TEST('..') METHOD names.",
     )
     parser.add_argument(
         "--fix", action="store_true", help="Fix non-matching TEST('..') METHOD names"
     )
-    parser.add_argument("filenames", nargs="+", help="XML files to check")
+    parser.add_argument("filenames", nargs="+", help="TcPOU files to check")
 
     args = parser.parse_args()
     verbose = not args.quiet
