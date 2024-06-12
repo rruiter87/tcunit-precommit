@@ -33,8 +33,7 @@ Add the following to your existing `.pre-commit-config.yml` file or create one.
     hooks:
       - id: unittest-name-fixer
         # --fix: fixes non-matching method - test names
-        # --quiet: Doesn't print files that have non-matches or files that are fixed.
-        args: [--fix, --quiet]
+        args: [--fix]
         # Only check files that end in _Tests.TcPOU, because that is how I name my tests
         files: '.*_Tests\.TcPOU$'
 ```
