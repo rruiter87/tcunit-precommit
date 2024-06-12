@@ -5,7 +5,7 @@ from typing import List
 Mismatch = namedtuple("Mismatch", ["method_name", "test_name"])
 
 
-def find_mismatched_test_names(xml_content: str, verbose: bool) -> List[Mismatch]:
+def find_mismatched_test_names(xml_content: str) -> List[Mismatch]:
     root = ET.fromstring(xml_content)
     function_block_name = root.find(".//POU").get("Name")
     methods = root.findall(".//Method")
@@ -22,10 +22,9 @@ def find_mismatched_test_names(xml_content: str, verbose: bool) -> List[Mismatch
                 test_name = implementation[test_start + 6 : test_end]
 
                 if test_name != method_name:
-                    if verbose:
-                        print(
-                            f"Method '{function_block_name}.{method_name}' does NOT match the TEST name '{test_name}'."
-                        )
+                    print(
+                        f"Method '{function_block_name}.{method_name}' does NOT match the TEST name '{test_name}'."
+                    )
                     mismatches.append(Mismatch(method_name, test_name))
 
     return mismatches

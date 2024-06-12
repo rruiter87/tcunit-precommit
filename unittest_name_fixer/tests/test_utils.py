@@ -43,27 +43,27 @@ def one_missing_test():
 
 
 def test_file_with_non_matching_names(one_failing_one_ok_name):
-    mismatches = find_mismatched_test_names(one_failing_one_ok_name, verbose=True)
+    mismatches = find_mismatched_test_names(one_failing_one_ok_name)
     assert len(mismatches) > 0
 
 
 def test_file_with_only_matching_names(all_matching_names):
-    mismatches = find_mismatched_test_names(all_matching_names, verbose=True)
+    mismatches = find_mismatched_test_names(all_matching_names)
     assert len(mismatches) == 0
 
 
 def test_file_with_two_mismatching_names(two_non_matching_names):
-    mismatches = find_mismatched_test_names(two_non_matching_names, verbose=True)
+    mismatches = find_mismatched_test_names(two_non_matching_names)
     assert len(mismatches) > 0
 
 
 def test_missing_test_at_start(one_missing_test):
-    mismatches = find_mismatched_test_names(one_missing_test, verbose=True)
+    mismatches = find_mismatched_test_names(one_missing_test)
     assert len(mismatches) == 0
 
 
 def test_fixing_non_matching_names(two_non_matching_names):
-    mismatches = find_mismatched_test_names(two_non_matching_names, verbose=True)
+    mismatches = find_mismatched_test_names(two_non_matching_names)
     fixed_content = fix_test_names(two_non_matching_names, mismatches)
-    new_mismatches = find_mismatched_test_names(fixed_content, verbose=True)
+    new_mismatches = find_mismatched_test_names(fixed_content)
     assert len(new_mismatches) == 0
