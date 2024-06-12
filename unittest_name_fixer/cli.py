@@ -1,7 +1,7 @@
 import argparse
 import sys
 
-from unittest_name_fixer import all_method_names_match_test_names, fix_test_names
+from unittest_name_fixer.utils import all_method_names_match_test_names, fix_test_names
 
 
 def main():

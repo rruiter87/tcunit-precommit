@@ -1,15 +1,15 @@
 from importlib.resources import files
 
 import pytest
-from unittest_name_fixer import all_method_names_match_test_names, fix_test_names
 
-import tests.data
+import unittest_name_fixer.tests.data
+from unittest_name_fixer.utils import all_method_names_match_test_names, fix_test_names
 
 
 @pytest.fixture()
 def one_failing_one_ok_name():
     return (
-        files(tests.data)
+        files(unittest_name_fixer.tests.data)
         .joinpath("UnitTestWithOneMatchingAndOneNonMatchingName.TcPOU")
         .read_text(encoding="UTF-8")
     )
@@ -18,7 +18,7 @@ def one_failing_one_ok_name():
 @pytest.fixture()
 def all_matching_names():
     return (
-        files(tests.data)
+        files(unittest_name_fixer.tests.data)
         .joinpath("UnitTestOnlyMatchingNames.TcPOU")
         .read_text(encoding="UTF-8")
     )
@@ -27,7 +27,7 @@ def all_matching_names():
 @pytest.fixture()
 def two_non_matching_names():
     return (
-        files(tests.data)
+        files(unittest_name_fixer.tests.data)
         .joinpath("UnitTestOnlyMismatchingNames.TcPOU")
         .read_text(encoding="UTF-8")
     )
@@ -36,7 +36,7 @@ def two_non_matching_names():
 @pytest.fixture()
 def one_missing_test():
     return (
-        files(tests.data)
+        files(unittest_name_fixer.tests.data)
         .joinpath("OneTestHasMissingTest.TcPOU")
         .read_text(encoding="UTF-8")
     )
