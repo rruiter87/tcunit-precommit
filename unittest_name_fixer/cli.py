@@ -1,7 +1,7 @@
 import argparse
 import sys
 
-from unittest_name_fixer.utils import all_method_names_match_test_names, fix_test_names
+from unittest_name_fixer.utils import find_mismatched_test_names, fix_test_names
 
 
 def main():
@@ -26,14 +26,15 @@ def main():
         try:
             with open(filename, "r", encoding="utf-8") as file:
                 xml_content = file.read()
-                if not all_method_names_match_test_names(xml_content, verbose):
+                non_matches = find_mismatched_test_names(xml_content, verbose)
+                if len(non_matches) > 0:
                     all_files_match = False
                     if args.fix:
                         if verbose:
                             print(f"Fixing file {filename}...")
-                        fixed_content = fix_test_names(xml_content)
-                        with open(filename, "w", encoding="utf-8") as file:
-                            file.write(fixed_content)
+                        fixed_content = fix_test_names(xml_content, non_matches)
+                        with open(filename, "w", encoding="utf-8") as write_file:
+                            write_file.write(fixed_content)
         except Exception as e:
             print(f"Error reading file {filename}: {e}", file=sys.stderr)
             all_files_match = False

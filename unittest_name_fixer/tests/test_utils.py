@@ -2,14 +2,14 @@ from importlib.resources import files
 
 import pytest
 
-import unittest_name_fixer.tests.data
-from unittest_name_fixer.utils import all_method_names_match_test_names, fix_test_names
+import unittest_name_fixer.tests.data as test_data
+from unittest_name_fixer.utils import find_mismatched_test_names, fix_test_names
 
 
 @pytest.fixture()
 def one_failing_one_ok_name():
     return (
-        files(unittest_name_fixer.tests.data)
+        files(test_data)
         .joinpath("UnitTestWithOneMatchingAndOneNonMatchingName.TcPOU")
         .read_text(encoding="UTF-8")
     )
@@ -18,7 +18,7 @@ def one_failing_one_ok_name():
 @pytest.fixture()
 def all_matching_names():
     return (
-        files(unittest_name_fixer.tests.data)
+        files(test_data)
         .joinpath("UnitTestOnlyMatchingNames.TcPOU")
         .read_text(encoding="UTF-8")
     )
@@ -27,7 +27,7 @@ def all_matching_names():
 @pytest.fixture()
 def two_non_matching_names():
     return (
-        files(unittest_name_fixer.tests.data)
+        files(test_data)
         .joinpath("UnitTestOnlyMismatchingNames.TcPOU")
         .read_text(encoding="UTF-8")
     )
@@ -36,28 +36,34 @@ def two_non_matching_names():
 @pytest.fixture()
 def one_missing_test():
     return (
-        files(unittest_name_fixer.tests.data)
+        files(test_data)
         .joinpath("OneTestHasMissingTest.TcPOU")
         .read_text(encoding="UTF-8")
     )
 
 
 def test_file_with_non_matching_names(one_failing_one_ok_name):
-    assert not all_method_names_match_test_names(one_failing_one_ok_name, verbose=False)
+    mismatches = find_mismatched_test_names(one_failing_one_ok_name, verbose=True)
+    assert len(mismatches) > 0
 
 
 def test_file_with_only_matching_names(all_matching_names):
-    assert all_method_names_match_test_names(all_matching_names, verbose=False)
+    mismatches = find_mismatched_test_names(all_matching_names, verbose=True)
+    assert len(mismatches) == 0
 
 
 def test_file_with_two_mismatching_names(two_non_matching_names):
-    assert not all_method_names_match_test_names(two_non_matching_names, verbose=False)
+    mismatches = find_mismatched_test_names(two_non_matching_names, verbose=True)
+    assert len(mismatches) > 0
 
 
 def test_missing_test_at_start(one_missing_test):
-    assert all_method_names_match_test_names(one_missing_test, verbose=False)
+    mismatches = find_mismatched_test_names(one_missing_test, verbose=True)
+    assert len(mismatches) == 0
 
 
 def test_fixing_non_matching_names(two_non_matching_names):
-    fixed_content = fix_test_names(two_non_matching_names)
-    assert all_method_names_match_test_names(fixed_content, verbose=False)
+    mismatches = find_mismatched_test_names(two_non_matching_names, verbose=True)
+    fixed_content = fix_test_names(two_non_matching_names, mismatches)
+    new_mismatches = find_mismatched_test_names(fixed_content, verbose=True)
+    assert len(new_mismatches) == 0
