@@ -21,11 +21,21 @@ METHOD TestSomething
 TEST('TestSomething')
 ...
 ```
+
+If your other methods looks like:
+
+```
+METHOD TestSomethingElse
+
+TEST('TestElse')
+...
+```
+
+Then this one is flagged and optionally fixed with the `--fix` flag: `TEST('TestElse')` -> `TEST('TestSomethingElse')`
+
 ## Usage
 
 Add the following to your existing `.pre-commit-config.yml` file or create one.
-
-
 
 ```yaml
   - repo: https://github.com/InspireHornets/tcunit-precommit
