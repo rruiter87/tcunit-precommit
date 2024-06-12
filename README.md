@@ -38,7 +38,7 @@ Then this one is flagged and optionally fixed with the `--fix` flag: `TEST('Test
 Add the following to your existing `.pre-commit-config.yml` file or create one.
 
 ```yaml
-  - repo: https://github.com/InspireHornets/tcunit-precommit
+  - repo: https://github.com/rruiter87/tcunit-precommit
     rev: v0.1.0
     hooks:
       - id: unittest-name-fixer
