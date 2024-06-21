@@ -42,6 +42,11 @@ def one_missing_test():
     )
 
 
+@pytest.fixture()
+def ordered_test():
+    return files(test_data).joinpath("OrderedTest.TcPOU").read_text(encoding="UTF-8")
+
+
 def test_file_with_non_matching_names(one_failing_one_ok_name):
     mismatches = find_mismatched_test_names(one_failing_one_ok_name)
     assert len(mismatches) > 0
@@ -67,3 +72,8 @@ def test_fixing_non_matching_names(two_non_matching_names):
     fixed_content = fix_test_names(two_non_matching_names, mismatches)
     new_mismatches = find_mismatched_test_names(fixed_content)
     assert len(new_mismatches) == 0
+
+
+def test_ordered_test(ordered_test):
+    mismatches = find_mismatched_test_names(ordered_test)
+    assert len(mismatches) == 1

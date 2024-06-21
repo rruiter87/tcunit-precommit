@@ -1,3 +1,4 @@
+import re
 import xml.etree.ElementTree as ET
 from collections import namedtuple
 from typing import List
@@ -11,16 +12,15 @@ def find_mismatched_test_names(xml_content: str) -> List[Mismatch]:
     methods = root.findall(".//Method")
 
     mismatches = []
+    pattern = re.compile(r"TEST(?:_ORDERED)?\('([^']+)'\)")
+
     for method in methods:
         method_name = method.get("Name")
         implementation = method.find(".//ST").text
 
         if implementation:
-            test_start = implementation.find("TEST('")
-            if test_start != -1:
-                test_end = implementation.find("');", test_start)
-                test_name = implementation[test_start + 6 : test_end]
-
+            matches = pattern.findall(implementation)
+            for test_name in matches:
                 if test_name != method_name:
                     print(
                         f"Method '{function_block_name}.{method_name}' does NOT match the TEST name '{test_name}'."
