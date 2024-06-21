@@ -39,7 +39,7 @@ Add the following to your existing `.pre-commit-config.yml` file or create one.
 
 ```yaml
   - repo: https://github.com/rruiter87/tcunit-precommit
-    rev: v0.1.0
+    rev: v0.2.0
     hooks:
       - id: unittest-name-fixer
         # --fix: fixes non-matching method - test names
