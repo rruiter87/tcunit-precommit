@@ -20,9 +20,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: conda-incubator/setup-miniconda@v3
-        with:
-          activate-environment: tcunit-pc312
-          environment-file: conda.yml
+      with:
+        activate-environment: tcunit-pc312
+        environment-file: conda.yml
     - name: Install dependencies
       run: pip install .[dev]
     - name: Test with pytest
