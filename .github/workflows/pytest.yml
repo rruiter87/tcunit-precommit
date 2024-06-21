@@ -23,8 +23,16 @@ jobs:
       with:
         activate-environment: tcunit-pc312
         environment-file: conda.yml
+    - name: Check conda installation
+      shell: bash -el {0}
+      run: |
+        conda info
+        conda list
     - name: Install dependencies
+      shell: |
+        bash -el {0}
       run: pip install .[dev]
     - name: Test with pytest
+      shell: bash -el {0}
       run: |
         pytest
