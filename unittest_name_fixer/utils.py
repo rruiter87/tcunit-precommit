@@ -4,6 +4,7 @@ from collections import namedtuple
 from typing import List
 
 Mismatch = namedtuple("Mismatch", ["method_name", "test_name"])
+pattern = re.compile(r"TEST(?:_ORDERED)?\('([^']+)'\)")
 
 
 def find_mismatched_test_names(xml_content: str) -> List[Mismatch]:
@@ -12,7 +13,6 @@ def find_mismatched_test_names(xml_content: str) -> List[Mismatch]:
     methods = root.findall(".//Method")
 
     mismatches = []
-    pattern = re.compile(r"TEST(?:_ORDERED)?\('([^']+)'\)")
 
     for method in methods:
         method_name = method.get("Name")
@@ -31,9 +31,13 @@ def find_mismatched_test_names(xml_content: str) -> List[Mismatch]:
 
 
 def fix_test_names(xml_content: str, mismatches: List[Mismatch]) -> str:
-    for mismatch in mismatches:
-        old_test_call = f"TEST('{mismatch.test_name}');"
-        new_test_call = f"TEST('{mismatch.method_name}');"
-        xml_content = xml_content.replace(old_test_call, new_test_call)
+    def replacer(match):
+        test_name = match.group(1)
+        for mismatch in mismatches:
+            if test_name == mismatch.test_name:
+                return match.group(0).replace(mismatch.test_name, mismatch.method_name)
+        return match.group(0)
+
+    xml_content = pattern.sub(replacer, xml_content)
 
     return xml_content

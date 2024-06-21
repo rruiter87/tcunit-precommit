@@ -77,3 +77,10 @@ def test_fixing_non_matching_names(two_non_matching_names):
 def test_ordered_test(ordered_test):
     mismatches = find_mismatched_test_names(ordered_test)
     assert len(mismatches) == 1
+
+
+def test_fixing_non_matching_ordertest_name(ordered_test):
+    mismatches = find_mismatched_test_names(ordered_test)
+    fixed_content = fix_test_names(ordered_test, mismatches)
+    new_mismatches = find_mismatched_test_names(fixed_content)
+    assert len(new_mismatches) == 0
