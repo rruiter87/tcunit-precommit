@@ -11,10 +11,5 @@ requires-python = ">=3.9, <3.13"
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
-[project.optional-dependencies]
-dev = [
-    "pytest>=6.2"
-]
-
 [project.scripts]
 unittest-name-fixer = "unittest_name_fixer.cli:main"

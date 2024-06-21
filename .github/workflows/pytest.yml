@@ -28,11 +28,8 @@ jobs:
       run: |
         conda info
         conda list
-    - name: Install dependencies
-      shell: |
-        bash -el {0}
-      run: pip install .[dev]
-    - name: Test with pytest
+    - name: Install and run pytest
       shell: bash -el {0}
       run: |
+        pip install --requirement dev-requirements.txt
         pytest
