@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="OrderedTest" Id="{730f5b54-1f58-0e36-3ed6-13b8b66d32c3}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK OneTestHasMissingTest EXTENDS FB_TestSuite]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="TestNameIsDifferent" Id="{e7546a67-4e1f-0a30-2978-e2d2f1e39ace}">
+      <Declaration><![CDATA[METHOD TestNameIsDifferent
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TEST_ORDERED('WithTimestampZeroTimeExpectCurrentTime') THEN
+    fbFunctionBlockUnderTest(Parameters);
+ 
+    AssertEquals(Expected := 'SomeValue',
+                 Actual := fbFunctionBlockUnderTest.OutVariable,
+                 Message := 'Test failed');
+ 
+    TEST_FINISHED();
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
