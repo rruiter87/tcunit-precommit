@@ -56,7 +56,10 @@ conda env create -f conda.yml
 # activate environment
 conda activate tcunit-pc312
 # Install development dependencies
-pip install .[dev]
+pip install --requirement dev-requirements.txt
+# Install CLI in editable mode, that way any chages you make to the code are
+# directly reflected if you run unittest-name-fixer from the command line
+pip install --editable .
 # Install/activate pre-commits of this repo. Assumes you have pre-commit installed globally
 pre-commit install
 ```

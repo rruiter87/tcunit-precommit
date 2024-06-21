@@ -1,0 +1,35 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Python application
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: conda-incubator/setup-miniconda@v3
+      with:
+        activate-environment: tcunit-pc312
+        environment-file: conda.yml
+    - name: Check conda installation
+      shell: bash -el {0}
+      run: |
+        conda info
+        conda list
+    - name: Install and run pytest
+      shell: bash -el {0}
+      run: |
+        pip install --requirement dev-requirements.txt
+        pytest
