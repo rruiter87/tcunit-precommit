@@ -2,6 +2,18 @@
 
 Pre-commit hooks for [TcUnit](https://tcunit.org/) library.
 
+Does this:
+
+```diff
+METHOD TestSomethingElse
+
+-TEST('TestElse')
++TEST('TestSomethingElse')
+...
+```
+
+## What it does
+
 This pre-commit checks if your `METHOD` name is the same as name passed to `TEST('...')`. This is also how the [TcUnit examples](https://tcunit.org/#/introduction-user-guide?id=create-test-suites-and-run-them) are set up.
 
 Your project looks as follows:
