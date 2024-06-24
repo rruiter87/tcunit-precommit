@@ -43,7 +43,7 @@ TEST('TestElse')
 ...
 ```
 
-Then this one is flagged and optionally fixed with the `--fix` flag: `TEST('TestElse')` -> `TEST('TestSomethingElse')`
+Then this method is flagged and optionally fixed with the `--fix` option: `TEST('TestElse')` -> `TEST('TestSomethingElse')`
 
 ## Usage
 
